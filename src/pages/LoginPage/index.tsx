@@ -23,9 +23,12 @@ const LoginPage: React.FC = () => {
     password: "",
   } as AuthLoginInterface);
 
+  const [loading, setLoading] = React.useState<boolean>(false);
+
   // Login User
   const onFinish = async (values: any) => {
     try {
+      setLoading(true);
       const result: any = await loginUser({
         email: loginItem.email,
         password: loginItem.password,
@@ -41,6 +44,7 @@ const LoginPage: React.FC = () => {
         navigate("/posts", { replace: true });
         navigate(0);
       }
+      setLoading(false);
     } catch (err) {
       toast.error("An error occurred while logging in!");
     }
@@ -105,6 +109,7 @@ const LoginPage: React.FC = () => {
                 <Form.Item className="button-form-item">
                   <Flex vertical gap="small" style={{ width: "60%" }}>
                     <Button
+                      loading={loading}
                       htmlType="submit"
                       iconPosition="end"
                       size="large"

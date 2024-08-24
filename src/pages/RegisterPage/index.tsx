@@ -25,9 +25,12 @@ const RegisterPage: React.FC = () => {
     password: "",
   } as AuthRegisterInterface);
 
+  const [loading, setLoading] = React.useState<boolean>(false);
+
   // Register User
   const onFinish = async (values: any) => {
     try {
+      setLoading(true);
       const result: any = await registerUser({
         name: registerItem.name,
         email: registerItem.email,
@@ -45,6 +48,8 @@ const RegisterPage: React.FC = () => {
           navigate("/login");
         }, 2000);
       }
+
+      setLoading(false);
     } catch (err) {
       toast.error("An error occurred while logging in!");
     }
@@ -132,6 +137,7 @@ const RegisterPage: React.FC = () => {
                 <Form.Item className="button-form-item">
                   <Flex vertical gap="small" style={{ width: "60%" }}>
                     <Button
+                      loading={loading}
                       htmlType="submit"
                       iconPosition="end"
                       size="large"

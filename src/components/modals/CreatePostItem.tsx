@@ -1,4 +1,4 @@
-import { Modal, Form, Input } from "antd";
+import { Modal, Form, Input, Button } from "antd";
 import React from "react";
 import { PostInterface } from "../../models/PostInterface";
 import { postAPI } from "../../store/api/postAPI";
@@ -20,8 +20,11 @@ const CreatePostItem = ({ open, onCancel }: CreatePostItemProps) => {
     content: "",
   } as PostInterface);
 
+  const [loading, setLoading] = React.useState<boolean>(false);
+
   const onFinish = async (values: any) => {
     try {
+      setLoading(true);
       const result: any = await createPost({
         title: postItem.title,
         content: postItem.content,
@@ -40,6 +43,7 @@ const CreatePostItem = ({ open, onCancel }: CreatePostItemProps) => {
         const message: string = getErrorMessage(result.data.response);
         toast.error(result.data.message + ": " + message);
       }
+      setLoading(false);
     } catch (err) {
       //console.log(err);
       toast.error("An error occurred while logging in!");
@@ -90,6 +94,7 @@ const CreatePostItem = ({ open, onCancel }: CreatePostItemProps) => {
               value={postItem.content}
             />
           </Form.Item>
+          {loading && <Button loading={loading} shape="circle"/>}
         </Form>
       </Modal>
     </>

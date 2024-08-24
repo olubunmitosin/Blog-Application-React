@@ -1,4 +1,4 @@
-import { Modal, Form, Input } from "antd";
+import { Modal, Form, Input, Button } from "antd";
 import React from "react";
 import { PostInterface } from "../../models/PostInterface";
 import { postAPI } from "../../store/api/postAPI";
@@ -27,7 +27,10 @@ const UpdatePostItem = ({
     content: postItem.content,
   } as PostInterface);
 
+  const [loading, setLoading] = React.useState<boolean>(false);
+
   const onFinish = () => {
+    setLoading(true);
     updatePost({
       ...postItemUpdate,
       id: postItemUpdate.id,
@@ -40,6 +43,7 @@ const UpdatePostItem = ({
       closeOnClick: true,
       pauseOnHover: false,
     });
+    setLoading(false);
   };
 
   return (
@@ -92,6 +96,7 @@ const UpdatePostItem = ({
               }
             />
           </Form.Item>
+          {loading && <Button loading={loading} shape="circle"/>}
         </Form>
       </Modal>
     </>
