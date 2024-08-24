@@ -93,7 +93,7 @@ const HeaderSite = () => {
       <ToastContainer />
       <Row>
         <Col span={8}>
-          <Logo logoColor="#333" logoSize={20}>
+          <Logo logoColor="#333">
             Blog Application
           </Logo>
         </Col>

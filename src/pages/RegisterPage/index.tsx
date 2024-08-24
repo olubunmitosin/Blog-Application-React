@@ -65,7 +65,7 @@ const RegisterPage: React.FC = () => {
       />
       <div className="alignLeft pt50">
         <Row gutter={16}>
-          <Col span={12} offset={6}>
+          <Col lg={{ span: 12, offset: 6 }} xs={{ span: 24 }}>
             <Card className="auth-card">
               <div className="auth-header">
                 <Title type="secondary" level={1}>

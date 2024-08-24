@@ -19,6 +19,7 @@ code {
 
 .logo-site {
   margin-top: 17px;
+  font-size: 14px;
 }
 
 section.ant-layout {
@@ -105,3 +106,10 @@ footer.site-footer {
 .post-meta {
   min-height: 60px;
 }
+
+
+@media (max-width: 768px) { 
+  .logo-site {
+    font-size: 16px !important;
+  }
+ }

@@ -48,7 +48,7 @@ const PostList = () => {
       {error && <h1>Something wrong...</h1>}
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
         {results?.response?.map((post: PostInterface) => (
-          <Col className="gutter-row" span={8} key={post._id}>
+          <Col className="gutter-row" sm={{ span: 24 }} lg={{ span: 8 }} key={post._id}>
             <PostItem remove={handleRemove} post={post} />
           </Col>
         ))}
