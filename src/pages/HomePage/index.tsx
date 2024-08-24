@@ -12,12 +12,12 @@ const HomePage: React.FC = () => {
         metaKeywords="Blog application, Posts"
       />
       <div className="alignCenter pt50">
-       <div className="">
-       <Title>Blog Application using:</Title>
-        <Title level={2} type="secondary">
-          TypeScript, Ant Design, React Toolkit, RTK Query
-        </Title>
-       </div>
+        <div className="">
+          <Title>Blog Application using:</Title>
+          <Title level={2} type="secondary">
+            TypeScript, Ant Design, React Toolkit, RTK Query
+          </Title>
+        </div>
       </div>
     </>
   );

@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import { Navigate, useLocation } from 'react-router';
-import { getCurrentUser } from '../services/auth.service';
+import React, { useEffect } from "react";
+import { Navigate, useLocation } from "react-router";
+import { getCurrentUser } from "../services/auth.service";
 
 export type ProtectedRouteProps = {
   authenticationPath: string;
@@ -9,7 +9,12 @@ export type ProtectedRouteProps = {
   outlet: JSX.Element;
 };
 
-export default function ProtectedRoute({authenticationPath, redirectPath, setRedirectPath, outlet}: ProtectedRouteProps) {
+export default function ProtectedRoute({
+  authenticationPath,
+  redirectPath,
+  setRedirectPath,
+  outlet,
+}: ProtectedRouteProps) {
   const currentLocation = useLocation();
   const [isAuthenticated, setIsAuthenticated] = React.useState(true);
   const user = getCurrentUser();
@@ -21,9 +26,13 @@ export default function ProtectedRoute({authenticationPath, redirectPath, setRed
     }
   }, [setIsAuthenticated, user, setRedirectPath, currentLocation]);
 
-  if(isAuthenticated) {
+  if (isAuthenticated) {
     return outlet;
   } else {
-    return <Navigate to={{ pathname: isAuthenticated ? redirectPath : authenticationPath }} />;
+    return (
+      <Navigate
+        to={{ pathname: isAuthenticated ? redirectPath : authenticationPath }}
+      />
+    );
   }
-};
+}

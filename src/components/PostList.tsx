@@ -9,7 +9,6 @@ import { FileAddOutlined } from "@ant-design/icons";
 import { ToastContainer, toast } from "react-toastify";
 
 const PostList = () => {
-
   const { data: results, error, isLoading } = postAPI.useFetchAllPostsQuery({});
   // eslint-disable-next-line no-empty-pattern
   const [deletePost, {}] = postAPI.useDeletePostMutation();

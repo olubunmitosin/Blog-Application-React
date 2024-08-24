@@ -11,9 +11,9 @@ export const userAPI = createApi({
       const token = authHeader();
       // If we have a token set in state, let's assume that we should be passing it.
       if (token) {
-        headers.set('authorization', `Bearer ${token}`)
+        headers.set("authorization", `Bearer ${token}`);
       }
-      return headers
+      return headers;
     },
   }),
   tagTypes: ["User"],

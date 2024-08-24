@@ -4,14 +4,13 @@ import { ResponseInterface } from "../../models/ResponseInterface";
 import authHeader from "../../services/auth.header";
 import { removeCredentials } from "../../services/auth.service";
 
-
 const checkStatusCode = (response: Response, result: any) => {
   if (response.status === 401) {
     removeCredentials();
     return false;
   }
   return true;
-}
+};
 
 export const postAPI = createApi({
   reducerPath: "postAPI",
@@ -21,9 +20,9 @@ export const postAPI = createApi({
       const token = authHeader();
       // If we have a token set in state, let's assume that we should be passing it.
       if (token) {
-        headers.set('authorization', `Bearer ${token}`)
+        headers.set("authorization", `Bearer ${token}`);
       }
-      return headers
+      return headers;
     },
   }),
   tagTypes: ["Post"],
@@ -63,7 +62,7 @@ export const postAPI = createApi({
       query: (post) => ({
         url: `/user/posts/delete`,
         method: "POST",
-        body: {"id": post._id},
+        body: { id: post._id },
         validateStatus: checkStatusCode,
       }),
       invalidatesTags: ["Post"],

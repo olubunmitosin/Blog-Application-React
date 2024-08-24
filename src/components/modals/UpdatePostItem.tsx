@@ -35,20 +35,17 @@ const UpdatePostItem = ({
       content: postItemUpdate.content,
     });
     onCancel();
-    toast.success(
-      "The article: " + postItemUpdate.title + " was updated",
-      {
-        autoClose: 3000,
-        closeOnClick: true,
-        pauseOnHover: false,
-      }
-    );
+    toast.success("The article: " + postItemUpdate.title + " was updated", {
+      autoClose: 3000,
+      closeOnClick: true,
+      pauseOnHover: false,
+    });
   };
 
   return (
     <>
       <Modal
-        key={"update"+ postItemUpdate._id}
+        key={"update" + postItemUpdate._id}
         open={open}
         title={title}
         onOk={onFinish}
@@ -56,7 +53,7 @@ const UpdatePostItem = ({
         okText="Update"
       >
         <Form
-          key={"update_"+ postItemUpdate._id}
+          key={"update_" + postItemUpdate._id}
           layout="vertical"
           form={form}
           name="update-post-item"
@@ -66,7 +63,7 @@ const UpdatePostItem = ({
           ]}
         >
           <Form.Item
-            key={"update_title_"+ postItemUpdate._id}
+            key={"update_title_" + postItemUpdate._id}
             name="update_title"
             label="Post Title"
             rules={[{ required: true }]}
@@ -79,7 +76,7 @@ const UpdatePostItem = ({
           </Form.Item>
 
           <Form.Item
-            key={"update_content_"+ postItemUpdate._id}
+            key={"update_content_" + postItemUpdate._id}
             name="update_content"
             label="Post Content"
             rules={[{ required: true }]}

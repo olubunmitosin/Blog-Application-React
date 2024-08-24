@@ -8,4 +8,4 @@ export const getCurrentUser = () => {
 export const removeCredentials = () => {
   localStorage.removeItem("user");
   return true;
-}
+};

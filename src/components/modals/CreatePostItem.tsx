@@ -11,8 +11,6 @@ interface CreatePostItemProps {
   onCancel: () => void;
 }
 
-
-
 const CreatePostItem = ({ open, onCancel }: CreatePostItemProps) => {
   const [form] = Form.useForm();
   // eslint-disable-next-line no-empty-pattern
@@ -22,7 +20,6 @@ const CreatePostItem = ({ open, onCancel }: CreatePostItemProps) => {
     content: "",
   } as PostInterface);
 
-
   const onFinish = async (values: any) => {
     try {
       const result: any = await createPost({
@@ -31,17 +28,14 @@ const CreatePostItem = ({ open, onCancel }: CreatePostItemProps) => {
       } as PostInterface);
 
       if (result.data.status === true) {
-        toast.success(
-          "Post article has been created successfully!",
-          {
-            autoClose: 3000,
-            closeOnClick: true,
-            pauseOnHover: false,
-          }
-        );
-          
-          form.resetFields();
-          onCancel();
+        toast.success("Post article has been created successfully!", {
+          autoClose: 3000,
+          closeOnClick: true,
+          pauseOnHover: false,
+        });
+
+        form.resetFields();
+        onCancel();
       } else {
         const message: string = getErrorMessage(result.data.response);
         toast.error(result.data.message + ": " + message);
@@ -62,7 +56,12 @@ const CreatePostItem = ({ open, onCancel }: CreatePostItemProps) => {
         onCancel={onCancel}
         onOk={onFinish}
       >
-        <Form key={"createPost"} layout="vertical" form={form} name="create-post-hooks">
+        <Form
+          key={"createPost"}
+          layout="vertical"
+          form={form}
+          name="create-post-hooks"
+        >
           <Form.Item
             name="title"
             label="Post Title"
