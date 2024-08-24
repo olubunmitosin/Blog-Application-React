@@ -102,3 +102,6 @@ footer.site-footer {
   text-align: center;
   text-align: -webkit-center;
 }
+.post-meta {
+  min-height: 60px;
+}

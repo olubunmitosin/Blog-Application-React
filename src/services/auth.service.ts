@@ -4,3 +4,8 @@ export const getCurrentUser = () => {
   if (userStr) return JSON.parse(userStr);
   return null;
 };
+// Remove current user
+export const removeCredentials = () => {
+  localStorage.removeItem("user");
+  return true;
+}

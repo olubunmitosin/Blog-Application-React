@@ -11,7 +11,6 @@ import { ToastContainer, toast } from "react-toastify";
 const PostList = () => {
 
   const { data: results, error, isLoading } = postAPI.useFetchAllPostsQuery({});
-
   // eslint-disable-next-line no-empty-pattern
   const [deletePost, {}] = postAPI.useDeletePostMutation();
 
@@ -28,7 +27,7 @@ const PostList = () => {
 
   const handleRemove = (post: PostInterface) => {
     deletePost(post);
-    toast("Post deleted successfully!");
+    toast.success("Post deleted successfully!");
   };
 
   return (

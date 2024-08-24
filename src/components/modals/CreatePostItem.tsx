@@ -3,6 +3,7 @@ import React from "react";
 import { PostInterface } from "../../models/PostInterface";
 import { postAPI } from "../../store/api/postAPI";
 import { toast } from "react-toastify";
+import { getErrorMessage } from "../../utilities/common";
 
 interface CreatePostItemProps {
   open: boolean;
@@ -10,9 +11,7 @@ interface CreatePostItemProps {
   onCancel: () => void;
 }
 
-interface Payload {
-  [key: string]: any[];
-}
+
 
 const CreatePostItem = ({ open, onCancel }: CreatePostItemProps) => {
   const [form] = Form.useForm();
@@ -24,17 +23,6 @@ const CreatePostItem = ({ open, onCancel }: CreatePostItemProps) => {
   } as PostInterface);
 
 
-  const getErrorMessage = (payload: Payload) => {
-    let message: string = '';
-    for (const [key, value] of Object.entries(payload)) {
-      for (const [index, item] of Object.entries(value)) {
-        message += item + "\n";
-      }
-    }
-
-    return message;
-  }
-
   const onFinish = async (values: any) => {
     try {
       const result: any = await createPost({
@@ -42,8 +30,16 @@ const CreatePostItem = ({ open, onCancel }: CreatePostItemProps) => {
         content: postItem.content,
       } as PostInterface);
 
-      if (result.data.status) {
-          toast("Post article has been created successfully!");
+      if (result.data.status === true) {
+        toast.success(
+          "Post article has been created successfully!",
+          {
+            autoClose: 3000,
+            closeOnClick: true,
+            pauseOnHover: false,
+          }
+        );
+          
           form.resetFields();
           onCancel();
       } else {
@@ -51,7 +47,7 @@ const CreatePostItem = ({ open, onCancel }: CreatePostItemProps) => {
         toast.error(result.data.message + ": " + message);
       }
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       toast.error("An error occurred while logging in!");
     }
   };
@@ -66,7 +62,7 @@ const CreatePostItem = ({ open, onCancel }: CreatePostItemProps) => {
         onCancel={onCancel}
         onOk={onFinish}
       >
-        <Form layout="vertical" form={form} name="control-hooks">
+        <Form key={"createPost"} layout="vertical" form={form} name="create-post-hooks">
           <Form.Item
             name="title"
             label="Post Title"
@@ -81,7 +77,7 @@ const CreatePostItem = ({ open, onCancel }: CreatePostItemProps) => {
           </Form.Item>
 
           <Form.Item
-            name="body"
+            name="content"
             label="Post Content"
             rules={[{ required: true }]}
           >

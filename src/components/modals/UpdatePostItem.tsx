@@ -48,6 +48,7 @@ const UpdatePostItem = ({
   return (
     <>
       <Modal
+        key={"update"+ postItemUpdate._id}
         open={open}
         title={title}
         onOk={onFinish}
@@ -55,16 +56,18 @@ const UpdatePostItem = ({
         okText="Update"
       >
         <Form
+          key={"update_"+ postItemUpdate._id}
           layout="vertical"
           form={form}
-          name="control-hooks"
+          name="update-post-item"
           fields={[
-            { name: ["title"], value: postItemUpdate.title },
-            { name: ["content"], value: postItemUpdate.content },
+            { name: ["update_title"], value: postItemUpdate.title },
+            { name: ["update_content"], value: postItemUpdate.content },
           ]}
         >
           <Form.Item
-            name="title"
+            key={"update_title_"+ postItemUpdate._id}
+            name="update_title"
             label="Post Title"
             rules={[{ required: true }]}
           >
@@ -76,7 +79,8 @@ const UpdatePostItem = ({
           </Form.Item>
 
           <Form.Item
-            name="body"
+            key={"update_content_"+ postItemUpdate._id}
+            name="update_content"
             label="Post Content"
             rules={[{ required: true }]}
           >

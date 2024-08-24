@@ -6,6 +6,7 @@ import Seo from "../../components/SEO";
 import { AuthLoginInterface } from "../../models/AuthLoginInterface";
 import { userAPI } from "../../store/api/userAPI";
 import { useNavigate } from 'react-router-dom';
+import { getErrorMessage } from "../../utilities/common";
 const { Title, Text } = Typography;
 
 const LoginPage: React.FC = () => {
@@ -27,13 +28,15 @@ const LoginPage: React.FC = () => {
         password: loginItem.password,
       } as AuthLoginInterface);
 
-      if (!result.data.status) {
-        toast.error(result.data.message);
+      if (result.data.status === false) {
+        const message: string = getErrorMessage(result.data.response);
+        toast.error(result.data.message + ": " + message);
       } else {
         // Set credentials
         localStorage.setItem("user", JSON.stringify(result.data.response));
         form.resetFields();
-        navigate('/posts');
+        navigate('/posts', {replace: true});
+        navigate(0);
       }
     } catch (err) {
       toast.error("An error occurred while logging in!");
@@ -56,7 +59,7 @@ const LoginPage: React.FC = () => {
                 <Title type="secondary" level={1}>Login</Title>
                 <Text>Login to access and manage your blog posts!</Text>
               </div>
-            <Form layout="vertical" onFinish={onFinish} form={form} name="control-hooks">
+            <Form key={"login"} layout="vertical" onFinish={onFinish} form={form} name="login-user">
               <Form.Item
                 name="email"
                 label="Email Address"

@@ -6,6 +6,7 @@ import Seo from "../../components/SEO";
 import { useNavigate } from 'react-router-dom';
 import { AuthRegisterInterface } from "../../models/AuthRegisterInterface";
 import { userAPI } from "../../store/api/userAPI";
+import { getErrorMessage } from "../../utilities/common";
 
 const { Title, Text } = Typography;
 
@@ -31,7 +32,8 @@ const RegisterPage: React.FC = () => {
       } as AuthRegisterInterface);
 
       if (!result.data.status) {
-        toast.error(result.data.message);
+        const message: string = getErrorMessage(result.data.response);
+        toast.error(result.data.message + ": " + message);
       } else {
         // Set credentials
         form.resetFields();
@@ -61,7 +63,7 @@ const RegisterPage: React.FC = () => {
                 <Title type="secondary" level={1}>Register</Title>
                 <Text>Register an account to access and manage blog posts!</Text>
               </div>
-            <Form layout="vertical" onFinish={onFinish} form={form} name="control-hooks">
+            <Form key={"register"} layout="vertical" onFinish={onFinish} form={form} name="register-user">
             <Form.Item
                 name="name"
                 label="Full Name"

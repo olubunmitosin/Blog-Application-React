@@ -38,7 +38,7 @@ const HeaderSite = () => {
       } else {
         // Set credentials
         localStorage.removeItem("user");
-        navigate('/login');
+        navigate('/login', {replace: true});
       }
     } catch (err) {
       toast.error("An error occurred while trying to logout!");

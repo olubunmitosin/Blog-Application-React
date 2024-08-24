@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { Avatar, Card } from "antd";
+import { Card } from "antd";
 import { PostInterface } from "../models/PostInterface";
 import { Link } from "react-router-dom";
 import UpdatePostItem from "./modals/UpdatePostItem";
@@ -61,11 +61,11 @@ const PostItem = ({ post, remove }: PostItemProps) => {
         ]}
       >
         <Meta
-          avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
+          className="post-meta"
           title={post.title}
           description={post.content.substring(0, 100)}
         />
-        <div className="readMoreWrap">
+        <div className="readMoreWrap alignLeft">
           <Link to={`/posts/${post._id}`}>Read more...</Link>
         </div>
       </Card>
