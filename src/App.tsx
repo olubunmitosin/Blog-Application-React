@@ -35,7 +35,7 @@ function App() {
           <Route path='/login' element={<LoginPage />} />
           <Route path='/register' element={<RegisterPage />} />
         </Route>
-        <Route path='/posts' element={<BlogLayout />} errorElement={<ErrorRouterElement />}>
+        <Route path='/posts' element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<BlogLayout />} />} errorElement={<ErrorRouterElement />}>
           <Route path='/posts' element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<BlogPage />} />} />
           <Route path='/posts/:postId' element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<SinglePostPage />} />} />
         </Route>

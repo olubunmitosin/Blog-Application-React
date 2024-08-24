@@ -2,7 +2,7 @@ import { Modal, Form, Input } from "antd";
 import React from "react";
 import { PostInterface } from "../../models/PostInterface";
 import { postAPI } from "../../store/api/postAPI";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 interface UpdatePostItemProps {
   postItem: PostInterface;
@@ -10,11 +10,6 @@ interface UpdatePostItemProps {
   title: string;
   onCancel: () => void;
 }
-
-const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 16 },
-};
 
 const UpdatePostItem = ({
   open,
@@ -27,7 +22,7 @@ const UpdatePostItem = ({
   const [form] = Form.useForm();
 
   const [postItemUpdate, setPostItemUpdate] = React.useState<PostInterface>({
-    id: postItem.id,
+    id: postItem._id,
     title: postItem.title,
     content: postItem.content,
   } as PostInterface);
@@ -52,7 +47,6 @@ const UpdatePostItem = ({
 
   return (
     <>
-      <ToastContainer />
       <Modal
         open={open}
         title={title}
@@ -61,7 +55,7 @@ const UpdatePostItem = ({
         okText="Update"
       >
         <Form
-          {...layout}
+          layout="vertical"
           form={form}
           name="control-hooks"
           fields={[

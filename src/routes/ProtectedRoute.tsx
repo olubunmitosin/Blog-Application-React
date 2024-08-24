@@ -21,7 +21,7 @@ export default function ProtectedRoute({authenticationPath, redirectPath, setRed
     }
   }, [setIsAuthenticated, user, setRedirectPath, currentLocation]);
 
-  if(isAuthenticated && redirectPath === currentLocation.pathname) {
+  if(isAuthenticated) {
     return outlet;
   } else {
     return <Navigate to={{ pathname: isAuthenticated ? redirectPath : authenticationPath }} />;
